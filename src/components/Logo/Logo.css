@@ -1,0 +1,10 @@
+.Tilt{
+  background: rgba(76,249,255,1);
+  background: -moz-linear-gradient(top, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(76,249,255,1)), color-stop(39%, rgba(128,158,244,1)), color-stop(100%, rgba(209,16,227,1)));
+  background: -webkit-linear-gradient(top, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
+  background: -o-linear-gradient(top, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
+  background: -ms-linear-gradient(top, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
+  background: linear-gradient(to bottom, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cf9ff', endColorstr='#d110e3', GradientType=0 );
+}

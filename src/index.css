@@ -6,9 +6,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgba(76,249,255,1);
+  background: -moz-linear-gradient(left, rgba(76,249,255,1) 0%, rgba(209,16,227,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(76,249,255,1)), color-stop(100%, rgba(209,16,227,1)));
+  background: -webkit-linear-gradient(left, rgba(76,249,255,1) 0%, rgba(209,16,227,1) 100%);
+  background: -o-linear-gradient(left, rgba(76,249,255,1) 0%, rgba(209,16,227,1) 100%);
+  background: -ms-linear-gradient(left, rgba(76,249,255,1) 0%, rgba(209,16,227,1) 100%);
+  background: linear-gradient(to right, rgba(76,249,255,1) 0%, rgba(209,16,227,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cf9ff', endColorstr='#d110e3', GradientType=1 );
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button{
+  cursor: pointer;
 }
