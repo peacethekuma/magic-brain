@@ -8,3 +8,7 @@
   background: linear-gradient(to bottom, rgba(76,249,255,1) 0%, rgba(128,158,244,1) 39%, rgba(209,16,227,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cf9ff', endColorstr='#d110e3', GradientType=0 );
 }
+
+.w700{
+  width: 700px;
+}
