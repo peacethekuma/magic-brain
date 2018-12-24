@@ -1,12 +1,21 @@
 import React from 'react';
 import './FaceRecignition.css'
 
-const FaceRecignition = ({ imageUrl,box }) => {
+const FaceRecignition = ({ imageUrl, boxes }) => {
   return (
     <div className='center mt3'>
       <div className='absolute mt2'>
-        <img id='inputImage' alt='' src={imageUrl} max-width='500px' height='auto' />
-        <div className='bounding-box' style={{top:box.topRow,right:box.rightCol,bottom:box.bottomRow,left:box.leftCol}}></div>
+        <img id='inputImage' alt='' src={ imageUrl } max-width='500px' height='auto' />
+        { 
+        boxes.map(box => {
+          return (
+            <div key={ `box${box.topRow}${box.rightCol}` }
+              className='bounding-box'
+              style={ { top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol } }>
+            </div>
+          )
+        })
+        }
       </div>
     </div>
   )
