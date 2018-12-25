@@ -129,10 +129,27 @@ class App extends Component {
     this.setState({ route: route });
   }
 
+  handleImageUpload = (file) => {
+    const files = Array.from(file);
+    const formData = new FormData();
+    files.forEach((file, i) => {
+      formData.append(i, file)
+    })
+
+    fetch('https://tranquil-falls-14865.herokuapp.com/image-upload', {
+      method: 'POST',
+      body: formData
+    }).then(res => res.json())
+      .then(data => {
+        this.setState({
+          input: data[0].secure_url
+        })
+      });
+  }
 
 
   render() {
-    const { isSignedIn, imageUrl, route, boxes } = this.state;
+    const { isSignedIn, imageUrl, route, boxes ,input} = this.state;
     return (
       <div className="App">
         <Particles params={ particlesOptions } className='particles' />
@@ -141,8 +158,8 @@ class App extends Component {
           <div>
             <Logo />
             <Rank name={ this.state.user.name } entries={ this.state.user.entries } />
-            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } />
-            <FaceRecognition boxes={ boxes } imageUrl={ imageUrl } /></div>
+            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } input={ input } />
+            <FaceRecognition boxes={ boxes } imageUrl={ imageUrl } handleImageUpload={ this.handleImageUpload } input={input}/></div>
           : (route === 'signin' ?
             <Signin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } /> :
             <Register onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
