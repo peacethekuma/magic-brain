@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone'
 
 class ImageArea extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       files: []
     }
@@ -24,15 +24,7 @@ class ImageArea extends React.Component {
   }
 
   
-
-  render() {
-    
-    const files = this.state.files.map(file => (
-      <li key={file.name}>
-        {file.name} - {file.size} bytes
-      </li>
-    ))
-
+  render() {    
     return (
       <section>
         <Dropzone
@@ -40,16 +32,12 @@ class ImageArea extends React.Component {
           onFileDialogCancel={this.onCancel.bind(this)}
         >
           {({getRootProps, getInputProps}) => (
-            <div {...getRootProps()}>
+            <div {...getRootProps()} className="b--dashed">
               <input {...getInputProps()} />
-                <p>Drop files here, or click to select files</p>
+                <p className="pa4 lh-copy">Drop files here, <br/> or click to select files</p>
             </div>
           )}
         </Dropzone>
-        <aside>
-          <h4>Files</h4>
-          <ul>{files}</ul>
-        </aside>
       </section>
     );
   }

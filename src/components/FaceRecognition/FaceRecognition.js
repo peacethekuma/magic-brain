@@ -16,8 +16,8 @@ const FaceRecignition = ({ imageUrl, boxes ,handleImageUpload ,input}) => {
     }): <ImageArea handleImageUpload={handleImageUpload}/>;
 
   return (
-    <div className='center mt3'>
-      <div className='absolute mt2'>
+    <div className='center'>
+      <div className='absolute mt3 mb5'>
         <img id='inputImage' alt='' src={ input } max-width='500px' height='auto' />
         {imageBlock}
       </div>
