@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'tachyons';
 import Particles from 'react-particles-js';
-
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -149,14 +148,15 @@ class App extends Component {
 
   onButtonRenew = () => {
     this.setState({
-      imageUrl:'',
-      input:''
+      imageUrl: '',
+      input: '',
+      boxes: []
     })
   }
 
 
   render() {
-    const { isSignedIn, imageUrl, route, boxes ,input} = this.state;
+    const { isSignedIn, imageUrl, route, boxes, input } = this.state;
     return (
       <div className="App">
         <Particles params={ particlesOptions } className='particles' />
@@ -165,8 +165,9 @@ class App extends Component {
           <div>
             <Logo />
             <Rank name={ this.state.user.name } entries={ this.state.user.entries } />
-            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={this.onButtonRenew} imageUrl={ imageUrl } input={ input } faces={boxes.length}/>
-            <FaceRecognition boxes={ boxes } imageUrl={ imageUrl } handleImageUpload={ this.handleImageUpload } input={input}/></div>
+            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={ this.onButtonRenew } imageUrl={ imageUrl } input={ input } faces={ boxes.length } />
+              <FaceRecognition boxes={ boxes } imageUrl={ imageUrl } handleImageUpload={ this.handleImageUpload } input={ input } />
+          </div>
           : (route === 'signin' ?
             <Signin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } /> :
             <Register onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
