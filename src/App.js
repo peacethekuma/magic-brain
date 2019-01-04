@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import 'tachyons';
-import Particles from 'react-particles-js';
-import Navigation from './components/Navigation/Navigation';
-import Logo from './components/Logo/Logo';
-import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import Rank from './components/Rank/Rank';
-import FaceRecognition from './components/FaceRecognition/FaceRecognition';
-import Signin from './components/Signin/Signin';
-import Register from './components/Register/Register';
+import Loadable from 'react-loadable';
+import Loading from './components/Loading/Loading';
 import './App.css';
 
 const particlesOptions = {
   particles: {
     number: {
-      value: 10,
+      value: 5,
       density: {
         enable: true,
-        value_area: 300,
+        value_area: 100,
       }
     }
   }
@@ -157,20 +151,45 @@ class App extends Component {
 
   render() {
     const { isSignedIn, imageUrl, route, boxes, input } = this.state;
+
+    const LoadableParticles = Loadable({
+      loader:(()=>import('react-particles-js')),
+      loading:Loading,
+    });
+
+    const LoadableNavigation = Loadable({
+      loader:(()=>import('./components/Navigation/Navigation')),
+      loading:Loading,
+    });
+
+    const LoadableSignin = Loadable({
+      loader:(()=>import('./components/Signin/Signin')),
+      loading:Loading,
+    });
+
+
+    
+    const LoadableHomepage = Loadable({
+      loader:(()=>import('./components/Homepage/Homepage')),
+      loading:Loading,
+    });
+
+    const LoadableRegister = Loadable({
+      loader:(()=>import('./components/Register/Register')),
+      loading:Loading,
+    })
+
     return (
       <div className="App">
-        <Particles params={ particlesOptions } className='particles' />
-        <Navigation onRouteChange={ this.onRouteChange } isSignedIn={ isSignedIn } />
+        <LoadableParticles params={ particlesOptions } className='particles' />
+        <LoadableNavigation onRouteChange={ this.onRouteChange } isSignedIn={ isSignedIn } />
         { route === 'home' ?
           <div>
-            <Logo />
-            <Rank name={ this.state.user.name } entries={ this.state.user.entries } />
-            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={ this.onButtonRenew } imageUrl={ imageUrl } input={ input } faces={ boxes.length } />
-              <FaceRecognition boxes={ boxes } imageUrl={ imageUrl } handleImageUpload={ this.handleImageUpload } input={ input } />
+            <LoadableHomepage name={ this.state.user.name } entries={ this.state.user.entries } onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={ this.onButtonRenew } imageUrl={ imageUrl } input={ input } faces={ boxes.length }boxes={ boxes } handleImageUpload={ this.handleImageUpload } />
           </div>
           : (route === 'signin' ?
-            <Signin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } /> :
-            <Register onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
+            <LoadableSignin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } /> :
+            <LoadableRegister onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
           )
         }
       </div>
