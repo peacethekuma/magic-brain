@@ -152,48 +152,57 @@ class App extends Component {
   render() {
     const { isSignedIn, imageUrl, route, boxes, input } = this.state;
 
-    const LoadableParticles = Loadable({
-      loader:(()=>import('react-particles-js')),
-      loading:Loading,
-    });
+    if (route === 'home') {
+      const LoadableParticles = Loadable({
+        loader: (() => import('react-particles-js')),
+        loading: Loading,
+      });
 
-    const LoadableNavigation = Loadable({
-      loader:(()=>import('./components/Navigation/Navigation')),
-      loading:Loading,
-    });
+      const LoadableNavigation = Loadable({
+        loader: (() => import('./components/Navigation/Navigation')),
+        loading: Loading,
+      });
 
-    const LoadableSignin = Loadable({
-      loader:(()=>import('./components/Signin/Signin')),
-      loading:Loading,
-    });
+      const LoadableHomepage = Loadable({
+        loader: (() => import('./components/Homepage/Homepage')),
+        loading: Loading,
+      });
+      return (
+        <div className="App">
+          <LoadableParticles params={ particlesOptions } className='particles' />
+          <LoadableNavigation onRouteChange={ this.onRouteChange } isSignedIn={ isSignedIn } />
+          <LoadableHomepage name={ this.state.user.name } entries={ this.state.user.entries } onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={ this.onButtonRenew } imageUrl={ imageUrl } input={ input } faces={ boxes.length } boxes={ boxes } handleImageUpload={ this.handleImageUpload } />
+        </div>
+      )
+    } else if (route === 'signin') {
+      const LoadableSignin = Loadable({
+        loader: (() => import('./components/Signin/Signin')),
+        loading: Loading,
+      });
 
+      return (
+        <div className="App">
+          <LoadableSignin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
+        </div>
+      )
+    } else {
+      const LoadableNavigation = Loadable({
+        loader: (() => import('./components/Navigation/Navigation')),
+        loading: Loading,
+      });
+      
+      const LoadableRegister = Loadable({
+        loader: (() => import('./components/Register/Register')),
+        loading: Loading,
+      })
 
-    
-    const LoadableHomepage = Loadable({
-      loader:(()=>import('./components/Homepage/Homepage')),
-      loading:Loading,
-    });
-
-    const LoadableRegister = Loadable({
-      loader:(()=>import('./components/Register/Register')),
-      loading:Loading,
-    })
-
-    return (
-      <div className="App">
-        <LoadableParticles params={ particlesOptions } className='particles' />
-        <LoadableNavigation onRouteChange={ this.onRouteChange } isSignedIn={ isSignedIn } />
-        { route === 'home' ?
-          <div>
-            <LoadableHomepage name={ this.state.user.name } entries={ this.state.user.entries } onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit } onButtonRenew={ this.onButtonRenew } imageUrl={ imageUrl } input={ input } faces={ boxes.length }boxes={ boxes } handleImageUpload={ this.handleImageUpload } />
-          </div>
-          : (route === 'signin' ?
-            <LoadableSignin onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } /> :
-            <LoadableRegister onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
-          )
-        }
-      </div>
-    );
+      return (
+        <div className="App">
+          <LoadableNavigation onRouteChange={ this.onRouteChange } isSignedIn={ isSignedIn } />
+          <LoadableRegister onRouteChange={ this.onRouteChange } loadUser={ this.loadUser } />
+        </div>
+      )
+    }
   }
 }
 
