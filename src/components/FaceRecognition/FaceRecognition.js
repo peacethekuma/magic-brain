@@ -1,6 +1,5 @@
 import React from 'react';
 import './FaceRecignition.css';
-import '../ImageArea/ImageArea';
 import { CSSTransition } from 'react-transition-group';
 import ImageArea from '../ImageArea/ImageArea';
 

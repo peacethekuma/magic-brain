@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 
 class ImageArea extends React.Component {
   constructor() {
